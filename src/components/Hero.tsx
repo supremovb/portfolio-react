@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { FaGithub, FaFacebook, FaEnvelope, FaChevronDown } from 'react-icons/fa'
+import { FaGithub, FaFacebook, FaEnvelope, FaChevronDown, FaLaptopCode, FaRocket, FaBolt } from 'react-icons/fa'
 
 const Hero = () => {
   const [text, setText] = useState('')
@@ -178,7 +178,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="relative">
-              {/* Decorative Ring - Hidden on small mobile */}
+              {/* Decorative Ring */}
               <motion.div
                 className="absolute -inset-3 sm:-inset-4 rounded-full border-2 border-primary/20 hidden sm:block"
                 animate={{ rotate: 360 }}
@@ -190,27 +190,27 @@ const Hero = () => {
                 transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
               />
 
-              {/* Floating Elements - Smaller on mobile */}
+              {/* Floating Elements with React Icons */}
               <motion.div
-                className="absolute -top-4 -right-4 sm:-top-8 sm:-right-8 w-10 h-10 sm:w-16 sm:h-16 glass-card flex items-center justify-center text-lg sm:text-2xl"
+                className="absolute -top-4 -right-4 sm:-top-8 sm:-right-8 w-10 h-10 sm:w-16 sm:h-16 glass-card flex items-center justify-center text-primary"
                 animate={{ y: [-10, 10, -10] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               >
-                
+                <FaLaptopCode className="text-lg sm:text-2xl" />
               </motion.div>
               <motion.div
-                className="absolute -bottom-2 -left-4 sm:-bottom-4 sm:-left-8 w-9 h-9 sm:w-14 sm:h-14 glass-card flex items-center justify-center text-base sm:text-xl"
+                className="absolute -bottom-2 -left-4 sm:-bottom-4 sm:-left-8 w-9 h-9 sm:w-14 sm:h-14 glass-card flex items-center justify-center text-secondary"
                 animate={{ y: [10, -10, 10] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               >
-                
+                <FaRocket className="text-base sm:text-xl" />
               </motion.div>
               <motion.div
-                className="absolute top-1/2 -right-6 sm:-right-12 w-8 h-8 sm:w-12 sm:h-12 glass-card flex items-center justify-center text-sm sm:text-lg hidden sm:flex"
+                className="absolute top-1/2 -right-6 sm:-right-12 w-8 h-8 sm:w-12 sm:h-12 glass-card flex items-center justify-center text-accent-pink hidden sm:flex"
                 animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
               >
-                
+                <FaBolt className="text-sm sm:text-lg" />
               </motion.div>
 
               {/* Profile Image Container */}
