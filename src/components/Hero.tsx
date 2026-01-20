@@ -57,10 +57,10 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 sm:pt-20 px-4"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Content */}
           <motion.div
             className="text-center lg:text-left order-2 lg:order-1"
@@ -70,18 +70,18 @@ const Hero = () => {
           >
             {/* Greeting */}
             <motion.div
-              className="inline-flex items-center gap-3 px-4 py-2 glass-card mb-6"
+              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 glass-card mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-sm text-gray-400">Available for Work</span>
+              <span className="text-xs sm:text-sm text-gray-400">Available for Work</span>
             </motion.div>
 
             {/* Name */}
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold mb-3 sm:mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
@@ -92,12 +92,12 @@ const Hero = () => {
 
             {/* Role with Typewriter */}
             <motion.div
-              className="h-12 mb-6"
+              className="h-8 sm:h-10 md:h-12 mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <span className="text-xl sm:text-2xl md:text-3xl text-secondary font-mono">
+              <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-secondary font-mono">
                 {text}
                 <span className="animate-pulse">|</span>
               </span>
@@ -105,26 +105,26 @@ const Hero = () => {
 
             {/* Description */}
             <motion.p
-              className="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed"
+              className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              A passionate developer from the Philippines with <span className="text-primary">5+ years</span> of experience 
-              crafting beautiful, functional, and user-centered digital experiences. 
+              A passionate developer from the Philippines with <span className="text-primary">5+ years</span> of experience
+              crafting beautiful, functional, and user-centered digital experiences.
               Currently pursuing BSIT at St. Dominic College of Asia.
             </motion.p>
 
             {/* Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8 px-4 sm:px-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
               <motion.button
                 onClick={() => scrollToSection('#projects')}
-                className="btn-primary relative z-10"
+                className="btn-primary relative z-10 text-sm sm:text-base px-6 py-3 sm:px-8 sm:py-4"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -132,7 +132,7 @@ const Hero = () => {
               </motion.button>
               <motion.button
                 onClick={() => scrollToSection('#contact')}
-                className="btn-secondary"
+                className="btn-secondary text-sm sm:text-base px-6 py-3 sm:px-8 sm:py-4"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -142,7 +142,7 @@ const Hero = () => {
 
             {/* Social Links */}
             <motion.div
-              className="flex gap-4 justify-center lg:justify-start"
+              className="flex gap-3 sm:gap-4 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
@@ -157,14 +157,14 @@ const Hero = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 glass-card flex items-center justify-center text-gray-400 hover:text-white hover:border-primary/50 transition-all duration-300"
+                  className="w-10 h-10 sm:w-12 sm:h-12 glass-card flex items-center justify-center text-gray-400 hover:text-white hover:border-primary/50 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -5 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 + index * 0.1 }}
                 >
-                  <social.icon size={20} />
+                  <social.icon size={18} className="sm:w-5 sm:h-5" />
                 </motion.a>
               ))}
             </motion.div>
@@ -178,50 +178,49 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="relative">
-              {/* Decorative Ring */}
+              {/* Decorative Ring - Hidden on small mobile */}
               <motion.div
-                className="absolute -inset-4 rounded-full border-2 border-primary/20"
+                className="absolute -inset-3 sm:-inset-4 rounded-full border-2 border-primary/20 hidden sm:block"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
               />
               <motion.div
-                className="absolute -inset-8 rounded-full border border-secondary/10"
+                className="absolute -inset-6 sm:-inset-8 rounded-full border border-secondary/10 hidden sm:block"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
               />
 
-              {/* Floating Elements */}
+              {/* Floating Elements - Smaller on mobile */}
               <motion.div
-                className="absolute -top-8 -right-8 w-16 h-16 glass-card flex items-center justify-center text-2xl"
+                className="absolute -top-4 -right-4 sm:-top-8 sm:-right-8 w-10 h-10 sm:w-16 sm:h-16 glass-card flex items-center justify-center text-lg sm:text-2xl"
                 animate={{ y: [-10, 10, -10] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               >
-                💻
+                
               </motion.div>
               <motion.div
-                className="absolute -bottom-4 -left-8 w-14 h-14 glass-card flex items-center justify-center text-xl"
+                className="absolute -bottom-2 -left-4 sm:-bottom-4 sm:-left-8 w-9 h-9 sm:w-14 sm:h-14 glass-card flex items-center justify-center text-base sm:text-xl"
                 animate={{ y: [10, -10, 10] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               >
-                🚀
+                
               </motion.div>
               <motion.div
-                className="absolute top-1/2 -right-12 w-12 h-12 glass-card flex items-center justify-center text-lg"
+                className="absolute top-1/2 -right-6 sm:-right-12 w-8 h-8 sm:w-12 sm:h-12 glass-card flex items-center justify-center text-sm sm:text-lg hidden sm:flex"
                 animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
               >
-                ⚡
+                
               </motion.div>
 
               {/* Profile Image Container */}
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+              <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 {/* Gradient Background */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-secondary to-accent-pink blur-2xl opacity-50 animate-pulse" />
                 
                 {/* Glass Frame */}
-                <div className="relative w-full h-full rounded-full glass-card p-2 overflow-hidden">
+                <div className="relative w-full h-full rounded-full glass-card p-1.5 sm:p-2 overflow-hidden">
                   <div className="w-full h-full rounded-full overflow-hidden bg-dark-100">
-                    {/* Replace with your profile images */}
                     <img
                       src="/profile.jpg"
                       alt="Primo Velasquez"
@@ -236,12 +235,12 @@ const Hero = () => {
 
                 {/* Experience Badge */}
                 <motion.div
-                  className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-6 py-3 glass-card"
+                  className="absolute -bottom-1 sm:-bottom-2 left-1/2 -translate-x-1/2 px-4 py-2 sm:px-6 sm:py-3 glass-card"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 }}
                 >
-                  <span className="text-sm font-semibold gradient-text">5+ Years Experience</span>
+                  <span className="text-xs sm:text-sm font-semibold gradient-text whitespace-nowrap">5+ Years Experience</span>
                 </motion.div>
               </div>
             </div>
@@ -250,7 +249,7 @@ const Hero = () => {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 hidden sm:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}

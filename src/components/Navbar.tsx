@@ -19,7 +19,6 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
 
-      // Update active section based on scroll position
       const sections = navLinks.map(link => link.href.substring(1))
       for (const section of sections.reverse()) {
         const element = document.getElementById(section)
@@ -37,6 +36,18 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   const scrollToSection = (href: string) => {
     setIsOpen(false)
     const element = document.querySelector(href)
@@ -48,7 +59,7 @@ const Navbar = () => {
   return (
     <motion.nav
       className={`navbar-glass transition-all duration-300 ${
-        scrolled ? 'py-3 shadow-glass' : 'py-5'
+        scrolled ? 'py-3 shadow-glass' : 'py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -59,7 +70,7 @@ const Navbar = () => {
           {/* Logo */}
           <motion.a
             href="#home"
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => {
@@ -67,10 +78,10 @@ const Navbar = () => {
               scrollToSection('#home')
             }}
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-lg font-display font-bold text-white shadow-neon-purple group-hover:shadow-neon-cyan transition-shadow duration-300">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-base sm:text-lg font-display font-bold text-white shadow-neon-purple group-hover:shadow-neon-cyan transition-shadow duration-300">
               PV
             </div>
-            <span className="text-xl font-display font-semibold hidden sm:block">
+            <span className="text-lg sm:text-xl font-display font-semibold hidden sm:block">
               <span className="text-white">Primo</span>
               <span className="gradient-text"> Velasquez</span>
             </span>
@@ -106,7 +117,6 @@ const Navbar = () => {
               </motion.a>
             ))}
 
-            {/* CTA Button */}
             <motion.a
               href="#contact"
               className="ml-4 px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white text-sm font-semibold rounded-xl hover:shadow-neon-purple transition-all duration-300"
@@ -123,9 +133,10 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden p-2 text-white"
+            className="md:hidden p-2 text-white relative z-[60]"
             onClick={() => setIsOpen(!isOpen)}
             whileTap={{ scale: 0.9 }}
+            aria-label="Toggle menu"
           >
             {isOpen ? <HiX size={28} /> : <HiMenuAlt3 size={28} />}
           </motion.button>
@@ -136,24 +147,25 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden fixed inset-0 top-[60px] bg-dark/95 backdrop-blur-xl z-40"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
+            className="md:hidden fixed inset-0 top-0 bg-dark/98 backdrop-blur-2xl z-[55]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="flex flex-col items-center justify-center h-full gap-8">
+            <div className="flex flex-col items-center justify-center min-h-screen gap-6 px-6 pt-20 pb-10">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className={`text-2xl font-display font-semibold ${
+                  className={`text-2xl sm:text-3xl font-display font-semibold transition-colors duration-300 ${
                     activeSection === link.href.substring(1)
                       ? 'gradient-text'
-                      : 'text-gray-400'
+                      : 'text-gray-400 hover:text-white'
                   }`}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
                   transition={{ delay: index * 0.1 }}
                   onClick={(e) => {
                     e.preventDefault()
@@ -163,12 +175,13 @@ const Navbar = () => {
                   {link.name}
                 </motion.a>
               ))}
-              
+
               <motion.a
                 href="#contact"
-                className="mt-4 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-xl"
-                initial={{ opacity: 0, y: 20 }}
+                className="mt-6 px-10 py-4 bg-gradient-to-r from-primary to-secondary text-white text-lg font-semibold rounded-xl shadow-neon-purple"
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
                 transition={{ delay: 0.5 }}
                 onClick={(e) => {
                   e.preventDefault()
